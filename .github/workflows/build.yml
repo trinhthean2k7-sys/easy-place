@@ -10,10 +10,16 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-      - name: Setup Gradle
+          
+      - name: Setup Gradle wrapper (Fix loi 127)
+        run: gradle wrapper --gradle-version 8.7
+        
+      - name: Setup Gradle Action
         uses: gradle/actions/setup-gradle@v3
+        
       - name: Build with Gradle
         run: ./gradlew build
+        
       - name: Upload Mod
         uses: actions/upload-artifact@v4
         with:
